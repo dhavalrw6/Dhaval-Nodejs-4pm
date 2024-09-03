@@ -55,8 +55,8 @@
                 <td><%= val.email%></td>
                 <td><%= val.password%></td>
                 <td>
-                    <a href="/deleteData?id=<%= val.id %>">Delete</a>
-                    <a href="/editData?id=<%= val.id %>">Edit</a>
+                    <a href="/deleteData/<%= val.id %>">Delete</a>
+                    <a href="/editData/<%= val.id %>">Edit</a>
                 </td>
             </tr>
         <% }) %>

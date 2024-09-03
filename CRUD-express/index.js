@@ -50,13 +50,31 @@ app.get('/', (req, res) => {
 })
 
 app.post('/insertData', (req, res) => {
-    let data = req.body;
-    students.push(data);
+
+    let { id, username, email, password, editId } = req.body;
+
+    if (editId) {
+        let data = students.map((val) => {
+            if (val.id == editId) {
+                val.username = username;
+                val.email = email;
+                val.password = password
+            }
+            return val;
+        })
+        students = data;
+    }
+    else {
+        students.push({ id, username, email, password });
+    }
+
     return res.redirect('/');
 })
 
-app.get('/deleteData', (req, res) => {
-    let { id } = req.query;
+app.get('/deleteData/:id', (req, res) => {
+    // let { id } = req.query;
+    let { id } = req.params;
+    console.log(id);
     // let data = students.filter((student)=> student.id != id)
     let data = students.filter((student) => {
         return student.id != id;
@@ -65,8 +83,9 @@ app.get('/deleteData', (req, res) => {
     return res.redirect('/');
 })
 
-app.get('/editData', (req, res) => {
-    let { id } = req.query;
+app.get('/editData/:id', (req, res) => {
+    // let { id } = req.query;
+    let { id } = req.params;
     console.log(id);
     let data = students.filter((student) => {
         return student.id == id;
