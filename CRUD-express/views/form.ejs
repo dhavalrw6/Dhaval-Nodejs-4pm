@@ -16,12 +16,11 @@
     <form action="/insertData" method="post">
         <table border="" align="center">
             <tr>
-                <td>Id</td>
-                <td><input type="text" name="id" id=""></td>
-            </tr>
-            <tr>
                 <td>UserName</td>
-                <td><input type="text" name="username" id=""></td>
+                <td>
+                    <input type="text" name="username" id="">
+                    <input type="hidden" name="id" value="<%= Date.now() %>">
+                </td>
             </tr>
             <tr>
                 <td>Email</td>
@@ -41,7 +40,6 @@
     <h2>Students Data</h2>
     <table border="1" align="center">
         <tr>
-            <td>id</td>
             <td>UserName</td>
             <td>Email</td>
             <td>Password</td>
@@ -50,7 +48,6 @@
 
         <% students.map((val,i)=>{ %>
             <tr>
-                <td><%= val.id %></td>
                 <td><%= val.username%></td>
                 <td><%= val.email%></td>
                 <td><%= val.password%></td>

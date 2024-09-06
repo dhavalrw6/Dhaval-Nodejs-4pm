@@ -16,15 +16,11 @@
     <form action="/insertData" method="post">
         <table border="" align="center">
             <tr>
-                <td>Id</td>
-                <td>
-                    <input type="text" name="id" value="<%= data.id %>" id="" disabled>
-                    <input type="hidden" name="editId" value="<%= data.id %>" id="">
-                </td>
-            </tr>
-            <tr>
                 <td>UserName</td>
-                <td><input type="text" name="username" value="<%= data.username%>" id=""></td>
+                <td>
+                    <input type="text" name="username" value="<%= data.username%>" id="">
+                     <input type="hidden" name="editId" value="<%= data.id %>">
+                </td>
             </tr>
             <tr>
                 <td>Email</td>

@@ -8,38 +8,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.urlencoded());
 
-let students = [
-    {
-        id: 21,
-        username: "Dhaval",
-        email: "dhaval@gmail.com",
-        password: "dhaval@123"
-    },
-    {
-        id: 22,
-        username: "Kunal",
-        email: "Kunal@gmail.com",
-        password: "Kunal@123"
-    },
-    {
-        id: 23,
-        username: "Ramesh",
-        email: "Ramesh@gmail.com",
-        password: "Ramesh@123"
-    },
-    {
-        id: 24,
-        username: "Suresh",
-        email: "Suresh@gmail.com",
-        password: "Suresh@123"
-    },
-    {
-        id: 25,
-        username: "Pratham",
-        email: "Pratham@gmail.com",
-        password: "Pratham@123"
-    }
-]
+let students = []
 
 
 app.get('/', (req, res) => {
