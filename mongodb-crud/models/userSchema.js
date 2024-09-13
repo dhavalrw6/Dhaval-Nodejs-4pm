@@ -12,9 +12,13 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    phone: {
+        type: Number,
+        required: true
     }
 })
 
-const user = mongoose.model('userTbl', userSchema);
+const userModel = mongoose.model('userTbl', userSchema);
 
-module.exports = user;
+module.exports = userModel;

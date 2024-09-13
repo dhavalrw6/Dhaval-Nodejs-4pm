@@ -6,6 +6,56 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Index page..</h2>
+
+    <form action="/insertData" method="post">
+    <table align="center" border="1">
+        <caption>
+            <h2>Add User Data.</h2>
+        </caption>
+        <tr>
+            <td>Username</td>
+            <td><input type="text" name="username" id=""></td>
+        </tr>
+        <tr>
+            <td>email</td>
+            <td><input type="text" name="email" id=""></td>
+        </tr>
+        <tr>
+            <td>password</td>
+            <td><input type="text" name="password" id=""></td>
+        </tr>
+        <tr>
+            <td>phone</td>
+            <td><input type="number" name="phone" id=""></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add Data" ></td>
+        </tr>
+    </table>
+    </form>
+
+    <table border="" align="center">
+        <caption>
+            <h2>User Data</h2>
+        </caption>
+        <tr>
+            <td>User Name</td>
+            <td>Email</td>
+            <td>Password</td>
+            <td>phone</td>
+        </tr>
+
+        <% data.map((val,idx)=>{ %>
+            <tr>
+                <td><%= val.username %></td>
+                <td><%= val.email %></td>
+                <td><%= val.password %></td>
+                <td><%= val.phone %></td>
+            </tr>    
+        <% }) %>
+
+    </table>
+
 </body>
 </html>
