@@ -16,6 +16,18 @@ const userSchema = new mongoose.Schema({
     phone: {
         type: Number,
         required: true
+    },
+    gender: {
+        type: String,
+        required: true
+    },
+    hobby: {
+        type: Array,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
     }
 })
 
