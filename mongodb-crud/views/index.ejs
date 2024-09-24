@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 </head>
 <body>
 
-    <form action="/insertData" method="post">
+    <form action="/insertData" method="post" enctype="multipart/form-data">
         <table border="" align="center" class="table">
             <caption>
                 <h2>Add User Data</h2>
@@ -31,6 +31,10 @@
             <tr>
                 <td>Phone</td>
                 <td><input type="text" name="phone" id=""></td>
+            </tr>
+            <tr>
+                <td>File</td>
+                <td><input type="file" name="image" id=""></td>
             </tr>
             <tr>
                 <td>City</td>
@@ -89,6 +93,7 @@
             <td>Gender</td>
             <td>Hobby</td>
             <td>Address</td>
+            <td>Image</td>
             <td>Action</td>
         </tr>
 
@@ -102,6 +107,9 @@
                 <td><%= val.gender %></td>
                 <td><%= val.hobby %></td>
                 <td><%= val.address %></td>
+                <td>
+                    <img src="<%= val.image %>" alt="image" width="100px">
+                </td>
                 <td>
                     <a href="/deleteData/<%= val.id %>">Delete</a>
                     <a href="/editData/<%= val.id %>">Edit</a>
