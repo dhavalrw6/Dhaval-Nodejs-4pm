@@ -7,7 +7,10 @@ const port = 8081;
 
 const app = express();
 
+app.use(express.static('node_modules'));
+
 app.set('view engine', 'ejs');
+
 
 app.use(bodyParser.urlencoded({ extended: true }))
 

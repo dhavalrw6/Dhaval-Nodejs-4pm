@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
     <form action="/insertData" method="post">
-        <table border="" align="center">
+        <table border="" align="center" class="table">
             <caption>
                 <h2>Add User Data</h2>
             </caption>
@@ -30,6 +31,22 @@
             <tr>
                 <td>Phone</td>
                 <td><input type="text" name="phone" id=""></td>
+            </tr>
+            <tr>
+                <td>City</td>
+                <td>
+                    <select name="city" id="">
+                        <option value="" disabled selected>--select-city--</option>
+                        <%
+                            let City = ["Surat","Vapi","Rajkot","Baroda"];
+                            City.map((val,idx)=>{
+                        %>
+                                <option value="<%= val %>"><%= val %></option>
+                        <%
+                            })
+                        %>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td>Gender</td>
@@ -54,7 +71,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Add Data" ></td>
+                <td><input type="submit" value="Add Data" class="btn btn-success" ></td>
             </tr>
         </table>
     </form>
@@ -68,6 +85,7 @@
             <td>Email</td>
             <td>Password</td>
             <td>phone</td>
+            <td>city</td>
             <td>Gender</td>
             <td>Hobby</td>
             <td>Address</td>
@@ -80,6 +98,7 @@
                 <td><%= val.email %></td>
                 <td><%= val.password %></td>
                 <td><%= val.phone %></td>
+                <td><%= val.city %></td>
                 <td><%= val.gender %></td>
                 <td><%= val.hobby %></td>
                 <td><%= val.address %></td>

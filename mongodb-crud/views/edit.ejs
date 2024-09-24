@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -33,6 +34,27 @@
                 <td><input type="text" name="phone" id="" value="<%= data.phone %>" ></td>
             </tr>
             <tr>
+                <td>City</td>
+                <td>
+                    <select name="city" id="">
+                        <option value="" disabled selected>--select-city--</option>
+                        <%
+                            let City = ["Surat","Vapi","Rajkot","Baroda"];
+                            City.map((val,idx)=>{
+                        %>
+                                <option 
+                                    value="<%= val %>"
+                                    <% if(data.city == val){ %> selected <% } %>  
+                                >
+                                <%= val %>
+                                </option>
+                        <%
+                            })
+                        %>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td>Gender</td>
                 <td>
                     <input type="radio" name="gender" value="male" <% if(data.gender == 'male') { %>checked<% } %>  id=""  >Male
@@ -55,7 +77,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><input type="submit" value="Add Data" ></td>
+                <td><input type="submit" value="Add Data" class="btn btn-success" ></td>
             </tr>
         </table>
     </form>
