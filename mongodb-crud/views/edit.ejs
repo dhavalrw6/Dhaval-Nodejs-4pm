@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 </head>
 <body>
 
-    <form action="/insertData" method="post">
+    <form action="/insertData" method="post" enctype="multipart/form-data">
         <table border="" align="center">
             <caption>
                 <h2>Edit User Data</h2>
@@ -32,6 +32,13 @@
             <tr>
                 <td>Phone</td>
                 <td><input type="text" name="phone" id="" value="<%= data.phone %>" ></td>
+            </tr>
+            <tr>
+                <td>File</td>
+                <td>
+                    <input type="file" name="image" id="">
+                    <img src="../<%= data.image %>" alt="image" width="100px">
+                </td>
             </tr>
             <tr>
                 <td>City</td>

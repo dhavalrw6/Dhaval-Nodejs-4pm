@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const userModel = require('./models/userSchema');
 const multer = require('multer');
 const path = require('path')
+const fs = require('fs');
+
 
 const port = 8081;
 
@@ -20,16 +22,16 @@ console.log(__dirname);
 
 // image Upload Start
 
-let storage = multer.diskStorage({
+const imgStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './uploads')
+        cb(null, './uploads');
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname)
+        cb(null, Date.now() + '-' + file.originalname);
     }
 })
 
-let uploadImage = multer({ storage: storage }).single('image')
+const uploadImage = multer({ storage: imgStorage }).single('image');
 
 // image Upload end
 
@@ -48,18 +50,35 @@ app.get('/', (req, res) => {
 app.post('/insertData', uploadImage, (req, res) => {
 
     let editId = req.body.editId;
-    const image = req.file.path;
-    console.log(req.file);
+    let image;
+    if (req.file) {
+        image = req.file.path
+    }
+
+    // console.log(req.file);
 
 
     if (editId) {
-        userModel.findByIdAndUpdate(editId, { ...req.body }).then((data) => {
-            console.log("data updated.");
+
+        userModel.findById(editId).then((data) => {
+            if (req.file) {
+                console.log(data.image);
+                fs.unlinkSync(data.image);
+            } else {
+                image = data.image
+            }
+            userModel.findByIdAndUpdate(editId, { ...req.body, image: image }).then((data) => {
+                return res.redirect('/');
+            }).catch((err) => {
+                console.log(err);
+                return res.redirect('/');
+            })
+
+        }).catch((error) => {
+            console.log(error);
             return res.redirect('/');
-        }).catch((err) => {
-            console.log(err);
-            return false;
         })
+
     }
     else {
         userModel.create({ ...req.body, image: image }).then((data) => {
@@ -69,8 +88,7 @@ app.post('/insertData', uploadImage, (req, res) => {
             return false;
         })
     }
-    res.redirect('/');
-
+    //res.redirect('/');
 })
 
 app.get('/deleteData/:id', (req, res) => {
@@ -78,6 +96,7 @@ app.get('/deleteData/:id', (req, res) => {
 
     userModel.findByIdAndDelete(id).then((data) => {
         console.log("Data deleted..");
+        fs.unlinkSync(data.image);
         return res.redirect('/');
     }).catch((err) => {
         console.log(err);
