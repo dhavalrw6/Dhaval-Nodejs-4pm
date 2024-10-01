@@ -1,16 +1,18 @@
-const express = require('express')
-
+const express = require('express');
+const db = require('./config/database');
+const bodyParser = require('body-parser')
 const port = 8081;
 
 const app = express();
 
 app.set('view engine', 'ejs')
-
-// app.get('/', (req, res) => {
-//     return res.render('home');
-// })
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use('/', require('./routers'))
+
+// app.get('/',(req,res)=>{
+
+// })
 
 app.listen(port, (err) => {
     if (!err) {

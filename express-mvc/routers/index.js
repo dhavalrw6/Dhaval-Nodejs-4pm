@@ -1,11 +1,11 @@
 const express = require('express')
-const postCtrl = require('../controllers/postControlles');
+const userData = require('../controllers/userController');
 
 const router = express.Router();
 
-router.get('/', postCtrl.homePage);
-router.get('/about', postCtrl.aboutPage);
-router.get('/contact', postCtrl.contactPage);
-
+router.get('/', userData.homePage);
+router.post('/insertData', userData.createData);
+router.get('/view',userData.viewPage);
+router.get('/deleteData/:id',userData.deleteData);
 
 module.exports = router;
