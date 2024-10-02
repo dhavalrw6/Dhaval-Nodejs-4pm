@@ -1,4 +1,5 @@
 const express = require('express');
+const { db } = require('./config/database.js');
 
 
 
@@ -13,6 +14,7 @@ app.use('/', require('./routers/index.js'));
 
 app.listen(8081, (err) => {
     if (!err) {
+        db();
         console.log("server start\n http://localhost:8081");
     }
 })
