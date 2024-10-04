@@ -20,7 +20,21 @@
         </tr>
     </thead>
     <tbody>
-        
+        <% 
+            let count=1;
+            data.map((val,index)=>{ 
+        %>
+            <tr>
+                <td><%= count %></td>
+                <td><%= val.title %></td>
+                <td><%= val.price %></td>
+                <td><%= val.img %></td>
+                <td>
+                    <a href="/edit/<%= val.id %>">Edit</a>
+                    <a href="/delete/<%= val.id %>">Delete</a>
+                </td>
+            </tr>
+        <% count++ }) %>
     </tbody>
     </table>
     </div>

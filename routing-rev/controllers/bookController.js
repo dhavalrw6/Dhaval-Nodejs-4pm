@@ -4,14 +4,32 @@ module.exports.homePage = (req, res) => {
     return res.render('home');
 }
 
-module.exports.aboutPage = (req, res) => {
-    return res.render('about');
+module.exports.aboutPage = async (req, res) => {
+    try {
+        let data = await bookModle.find({});
+        return res.render('about', { data });
+    } catch (error) {
+        console.log(error);
+    }
 }
+
+module.exports.editPage = async (req, res) => {
+    try {
+        let id = req.params.id;
+        let data = await bookModle.findById(id);
+        return res.render('edit', { data });
+    } catch (error) {
+        console.log(error);
+        return res.render('edit');
+    }
+}
+
 
 module.exports.createData = async (req, res) => {
     try {
+        console.log(req.body);
         await bookModle.create(req.body);
-        return res.json("Data Created.");
+        return res.redirect('/');
     } catch (error) {
         console.log(error);
     }
@@ -32,11 +50,10 @@ module.exports.updateBookData = async (req, res) => {
     try {
         let { id } = req.params;
         await bookModle.findByIdAndUpdate(id, req.body);
-        console.log("Data updated..");
-        // return res.redirect('back');
-        return res.json("Data updated..");
+        return res.redirect('back');
     } catch (error) {
         console.log(error);
+        return res.redirect('back');
     }
 }
 
@@ -45,8 +62,10 @@ module.exports.deleteBookData = async (req, res) => {
         let { id } = req.params;
         await bookModle.findByIdAndDelete(id);
         // console.log("Data Deleted");
-        return res.json("Data Deleted");
+        // return res.json("Data Deleted");
+        return res.redirect('back');
     } catch (error) {
         console.log(error);
+        return res.redirect('back');
     }
 }
