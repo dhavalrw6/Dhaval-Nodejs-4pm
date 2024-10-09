@@ -13,6 +13,17 @@ module.exports.aboutPage = async (req, res) => {
     }
 }
 
+module.exports.Home1Page = async (req, res) => {
+    try {
+        let data = await bookModle.find({});
+        console.log(data);
+
+        return res.render('index', { data });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 module.exports.editPage = async (req, res) => {
     try {
         let id = req.params.id;
@@ -29,7 +40,7 @@ module.exports.createData = async (req, res) => {
     try {
         console.log(req.body);
         await bookModle.create(req.body);
-        return res.redirect('/');
+        return res.redirect('/about');
     } catch (error) {
         console.log(error);
     }
@@ -50,10 +61,10 @@ module.exports.updateBookData = async (req, res) => {
     try {
         let { id } = req.params;
         await bookModle.findByIdAndUpdate(id, req.body);
-        return res.redirect('back');
+        return res.redirect('/about');
     } catch (error) {
         console.log(error);
-        return res.redirect('back');
+        return res.redirect('/about');
     }
 }
 

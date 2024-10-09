@@ -13,6 +13,7 @@ router.post('/update/:id', productCtrl.updateBookData);
 
 router.get('/getData', productCtrl.getBookData);
 router.post('/create', productCtrl.createData);
+router.get('/home',productCtrl.Home1Page)
 // router.patch('/update/:id', productCtrl.updateBookData);
 // router.delete('/delete/:id',productCtrl.deleteBookData);
 
