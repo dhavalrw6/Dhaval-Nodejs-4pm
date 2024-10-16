@@ -12,6 +12,11 @@ module.exports.formBasicPage = (req, res) => {
 module.exports.tablePage = async (req, res) => {
     try {
         let data = await product.find({});
+
+        if (data.length === 0) {
+
+            return res.redirect('/form-basic');
+        }
         return res.render('tables', {
             data
         });

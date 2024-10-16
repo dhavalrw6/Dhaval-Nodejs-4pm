@@ -8,4 +8,7 @@ router.get('/form-basic', adminCtl.formBasicPage);
 router.get('/tables', adminCtl.tablePage);
 
 router.post('/form-basic',productCtl.create);
+router.get('/deleteData/:id',productCtl.deleteData);
+router.get('/editData/:id',productCtl.editPage);
+router.post('/editData/:id',productCtl.editData);
 module.exports = router; 
