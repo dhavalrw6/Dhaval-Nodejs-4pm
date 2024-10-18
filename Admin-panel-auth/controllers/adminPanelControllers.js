@@ -1,5 +1,4 @@
 const product = require("../models/productSchema");
-const User = require("../models/userSchema");
 
 module.exports.homePage = (req, res) => {
     return res.render('index');
