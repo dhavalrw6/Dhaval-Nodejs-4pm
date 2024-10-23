@@ -1,9 +1,9 @@
 const { Router } = require("express");
-const AdminCtl = require('../controllers/adminController')
+const ApRouter = require("./admin_panelRouter");
 
 
 const router = Router();
 
-router.get('/',AdminCtl.homePage);
+router.use('/',ApRouter);
 
 module.exports = router;
