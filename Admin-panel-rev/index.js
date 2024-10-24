@@ -5,10 +5,11 @@ const app = express();
 const port = 8081;
 
 const path = require('path');
+const { db } = require("./config/database");
 
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname + '/assets')));
-
+app.use('/uploads',express.static(path.join(__dirname+'/uploads')))
 app.use('/', require('./routers'));
 
 app.listen(port, (err) => {
@@ -16,6 +17,7 @@ app.listen(port, (err) => {
         console.log(err);
         return false;
     }
+    db();
     console.log("server start \nhttp://localhost:" + port);
 
 })
