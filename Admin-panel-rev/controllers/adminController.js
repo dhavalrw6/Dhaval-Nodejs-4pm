@@ -1,17 +1,5 @@
 const admin = require("../models/adminSchema");
 
-module.exports.homePage = (req, res) => {
-    return res.render('index');
-}
-
-module.exports.addAdminPage = (req, res) => {
-    return res.render('./pages/add_admin');
-}
-
-module.exports.viewAdminPage = (req, res) => {
-    return res.render('./pages/view_admin');
-}
-
 module.exports.addAdminData = async (req, res) => {
     try {
 
@@ -26,5 +14,17 @@ module.exports.addAdminData = async (req, res) => {
     } catch (error) {
         console.log(error);
         return res.redirect('back');
+    }
+}
+
+module.exports.deleteAdmin = async (req, res) => {
+    try {
+        let { adminId } = req.params;
+        await admin.findByIdAndDelete(adminId);
+        console.log("Admin Deleted..");
+        return res.redirect('/view_admin')
+    } catch (error) {
+        console.log(error);
+        return res.redirect('/view_admin')
     }
 }

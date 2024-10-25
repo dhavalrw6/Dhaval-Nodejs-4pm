@@ -1,14 +1,14 @@
 const { Router } = require("express");
-const AdminCtl = require('../controllers/adminController');
-const { uploadImage } = require("../middlewares/adminMiddleware");
+const AdminPCtl = require('../controllers/admin-panelController');
+
 
 // admin panel Router.
 const ApRouter = Router();
 
-ApRouter.get('/', AdminCtl.homePage);
-ApRouter.get('/add_admin', AdminCtl.addAdminPage);
-ApRouter.post('/add_admin',uploadImage, AdminCtl.addAdminData);
+ApRouter.get('/', AdminPCtl.homePage);
+ApRouter.get('/add_admin', AdminPCtl.addAdminPage);
 
-ApRouter.get('/view_admin', AdminCtl.viewAdminPage);
+
+ApRouter.get('/view_admin', AdminPCtl.viewAdminPage);
 
 module.exports = ApRouter;
