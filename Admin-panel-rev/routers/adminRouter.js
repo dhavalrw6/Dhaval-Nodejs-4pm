@@ -6,6 +6,6 @@ const adminRouter = Router();
 
 adminRouter.post('/add_admin', uploadImage, AdminCtl.addAdminData);
 adminRouter.get('/delete-admin/:adminId',AdminCtl.deleteAdmin)
-
+adminRouter.post('/edit_admin/:adminId',uploadImage,AdminCtl.editAdmin)
 
 module.exports = adminRouter;

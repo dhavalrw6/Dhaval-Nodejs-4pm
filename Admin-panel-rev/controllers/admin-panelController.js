@@ -34,3 +34,13 @@ module.exports.addAdminData = async (req, res) => {
         return res.redirect('back');
     }
 }
+
+module.exports.editAdminPage = async (req, res) => {
+    try {
+        let { id } = req.params;
+        let adminData = await admin.findById(id);
+        return res.render('./pages/edit_admin', { admin:adminData });
+    } catch (error) {
+        console.log(error.message);
+    }
+}

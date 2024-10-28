@@ -9,7 +9,7 @@ const { db } = require("./config/database");
 
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname + '/assets')));
-app.use('/uploads',express.static(path.join(__dirname+'/uploads')))
+app.use('/uploads', express.static(path.join(__dirname + '/uploads')))
 app.use('/', require('./routers'));
 
 app.listen(port, (err) => {
