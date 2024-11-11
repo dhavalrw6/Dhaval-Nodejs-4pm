@@ -44,3 +44,4 @@ module.exports.editAdmin = async (req, res) => {
         return res.redirect('/view_admin');
     }
 }
+
