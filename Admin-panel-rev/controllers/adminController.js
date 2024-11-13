@@ -45,3 +45,7 @@ module.exports.editAdmin = async (req, res) => {
     }
 }
 
+module.exports.logout = (req, res) => {
+    res.clearCookie('adminId');
+    return res.redirect('/login');
+}

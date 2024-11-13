@@ -24,7 +24,6 @@ module.exports.addAdminData = async (req, res) => {
         if (req.file) {
             req.body.image = req.file.path;
         }
-
         req.body.name = req.body.fname + ' ' + req.body.lname;
 
         await admin.create(req.body);
@@ -59,9 +58,18 @@ module.exports.login = async (req, res) => {
 
         let { email, password } = req.body;
         const currAdmin = await admin.findOne({ email })
-        console.log(currAdmin);
+        if(currAdmin)
+        {
+            if(currAdmin.password == password)
+            {
+                return res.cookie('adminId', currAdmin.id).redirect('/');
+            }
+            else
+            {
+                return res.status(400).redirect('/login');
+            }
+        }
 
-        return res.cookie('adminId', currAdmin.id).redirect('/');
     } catch (error) {
         console.log(error.message);
         return res.redirect('back');
