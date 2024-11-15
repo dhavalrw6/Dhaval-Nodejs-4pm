@@ -31,8 +31,9 @@ module.exports.add_blog = async (req, res) => {
 
 module.exports.all_blogPage = async (req, res) => {
     try {
+        let {adminId} = req.cookies
         let data = await blogs.find({});
-        return res.render('./pages/all_blog', { data });
+        return res.render('./pages/all_blog', { data,adminId });
     } catch (error) {
         console.log(error);
         return res.render('./pages/all_blog');
@@ -55,6 +56,7 @@ module.exports.likeBlog = async (req, res) => {
             blog.likeBy.splice(adminIndex, 1);
         }
         await blog.save();
+
         return res.redirect('/blog/all_blog');
     } catch (error) {
         console.log(error);
