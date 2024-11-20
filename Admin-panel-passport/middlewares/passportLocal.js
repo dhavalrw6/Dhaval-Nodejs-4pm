@@ -54,4 +54,11 @@ passport.AdminPassportAuth = (req, res, next) => {
     }
 }
 
+passport.setAdminAuth = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        res.locals.admin = req.user;
+    }
+    next();
+}
+
 module.exports = passport;
