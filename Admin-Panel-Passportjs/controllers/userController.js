@@ -15,7 +15,7 @@ module.exports.signup = async (req, res) => {
         if (error.key.username) {
             console.log(error.MongoServerError);
         }
-        return res.redirect('/user/signup')
+        return res.redirect('/user/login')
     }
 }
 
@@ -23,3 +23,38 @@ module.exports.loginPage = (req, res) => {
     return res.render('./pages/login');
 }
 
+module.exports.profilePage = (req, res) => {
+    let user = req.user || {};
+    return res.render('./pages/profile', {
+        user
+    });
+}
+
+module.exports.logout = (req, res) => {
+    req.logout(() => {
+        return res.redirect('/user/login');
+    });
+}
+
+module.exports.changePassword = async (req, res) => {
+    try {
+        const { oldPassword, newPassword, confPassword } = req.body;
+        let { id } = req.params;
+        let User = await user.findById(id);
+
+        if (User.password === oldPassword) {
+            if (newPassword == confPassword) {
+
+                User.password = newPassword;
+                await User.save();
+                return res.redirect('/user/logout');
+            }
+        }
+
+        return res.redirect('/user/profile');
+
+    } catch (error) {
+        console.log(error);
+        return res.redirect('/user/profile');
+    }
+}

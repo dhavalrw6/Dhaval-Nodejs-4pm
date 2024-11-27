@@ -4,7 +4,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const passport = require('passport');
 const user = require('../models/userSchema');
 
-passport.use('user',new LocalStrategy(async (username, password, done) => {
+passport.use('user', new LocalStrategy(async (username, password, done) => {
     try {
         let User = await user.findOne({ username });
 
@@ -33,5 +33,12 @@ passport.deserializeUser(async (id, done) => {
     let User = await user.findById(id);
     return done(null, User);
 })
+
+passport.userPassportAuth = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        next();
+    }
+    return res.redirect('/user/login');
+}
 
 module.exports = passport;
