@@ -1,45 +1,81 @@
-<%- include('../partials/header.ejs') %>
-
-<div class="page-wrapper">
-    <div class="row">
-        <div class="col">
-            <div class="card mb-3 m-3" style="max-width: 540px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                    <img src="..." class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= user.username %></h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                    </div>
-                </div>
+        <%- include('../partials/header') %>
+      <!-- ============================================================== -->
+      <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+      <!-- ============================================================== -->
+      <!-- ============================================================== -->
+      <!-- Page wrapper  -->
+      <!-- ============================================================== -->
+      <div class="page-wrapper">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+         <% const {username,email,phone,id} = locals.user %>
+        <div class="page-breadcrumb">
+          <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+              <h4 class="page-title">Profile</h4>
+              <div class="ms-auto text-end">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">User</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                      Profile
+                    </li>
+                  </ol>
+                </nav>
+              </div>
             </div>
+          </div>
         </div>
-    <form action="/user/change-pass/<%= user.id %>" method="post">
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1"
-            name="oldPassword"
-        >
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1"
-          name="newPassword"
-        >
-    </div>
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1"
-          name="confPassword"
-        >
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    </div>
-</div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Container fluid  -->
+        <!-- ============================================================== -->
+        <div class="container-fluid">
+          <!-- ============================================================== -->
+          <!-- Start Page Content -->
+          <!-- ============================================================== -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card card-body printableArea">
+                <h3><%= username %> 
+                    <a
+                      href="/user/edit/<%= id%>"
+                      class="btn btn-sm btn-success btn-rounded text-white"
+                      >Edit</a
+                    >
+                </h3>
+                <hr />
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="pull-left">
+                        <p class="text-muted ms-1">
+                          <%= email %> <br />
+                          <%= phone %> <br />
+                        </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-<%- include('../partials/footer.ejs') %>
+          <!-- ============================================================== -->
+          <!-- End PAge Content -->
+          <!-- ============================================================== -->
+          <!-- ============================================================== -->
+          <!-- Right sidebar -->
+          <!-- ============================================================== -->
+          <!-- .right-sidebar -->
+          <!-- ============================================================== -->
+          <!-- End Right sidebar -->
+          <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Container fluid  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+       <%- include('../partials/footer') %>

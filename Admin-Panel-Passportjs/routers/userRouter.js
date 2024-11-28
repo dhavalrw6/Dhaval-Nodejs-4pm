@@ -11,6 +11,8 @@ userRouter.post('/login', passport.authenticate('user', { failureRedirect: '/use
 userRouter.get('/logout', userController.logout);
 userRouter.get('/profile', passport.userPassportAuth, userController.profilePage);
 
-userRouter.post('/change-pass/:id', userController.changePassword);
+userRouter.post('/change-password/:id', userController.changePassword);
+
+userRouter.get('/change-password', userController.changePasswordPage)
 
 module.exports = userRouter;

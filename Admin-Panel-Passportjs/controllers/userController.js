@@ -58,3 +58,7 @@ module.exports.changePassword = async (req, res) => {
         return res.redirect('/user/profile');
     }
 }
+
+module.exports.changePasswordPage = (req, res) => {
+    return res.render('./pages/change-password');
+}
