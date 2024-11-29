@@ -43,19 +43,29 @@ module.exports.changePassword = async (req, res) => {
         let User = await user.findById(id);
 
         if (User.password === oldPassword) {
-            if (newPassword == confPassword) {
-
-                User.password = newPassword;
-                await User.save();
-                return res.redirect('/user/logout');
+            if (oldPassword !== newPassword) {
+                if (newPassword === confPassword) {
+                    User.password = newPassword;
+                    await User.save();
+                    console.log("password Change.");
+                    return res.redirect('/user/logout');
+                }
+                else {
+                    console.log("New Password and Confirm Password do not match.");
+                }
+            }
+            else {
+                console.log("Old Password and New Password are same..")
             }
         }
+        else {
+            console.log("Old Password is incorrect..")
+        }
 
-        return res.redirect('/user/profile');
-
+        return res.redirect(req.get('Referrer') || '/');
     } catch (error) {
         console.log(error);
-        return res.redirect('/user/profile');
+        return res.redirect(req.get('Referrer') || '/');
     }
 }
 
