@@ -5,13 +5,14 @@ const bodyParser = require('body-parser');
 const LocalStrategy = require('./middlewares/passportLocal');
 const passport = require('passport');
 const session = require('express-session');
-
+const cookieParser = require('cookie-parser');
 const port = 8081;
 
 const app = express();
 
 app.set('view engine', 'ejs');
 
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname + '/assets')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({

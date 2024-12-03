@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const userController = require('../controllers/userController');
 const passport = require("passport");
+const user = require("../models/userSchema");
 
 const userRouter = Router();
 
@@ -14,5 +15,13 @@ userRouter.get('/profile', passport.userPassportAuth, userController.profilePage
 userRouter.post('/change-password/:id', userController.changePassword);
 
 userRouter.get('/change-password', userController.changePasswordPage)
+
+userRouter.post('/recover',userController.recoverPassword);
+
+userRouter.get('/otp-verify',userController.otpVerifyPage);
+userRouter.post('/otp-verify',userController.otpVerify);
+
+userRouter.get('/forgotPassword', userController.forgotPasswordPage);
+userRouter.post('/forgotPassword', userController.forgotPassword);
 
 module.exports = userRouter;

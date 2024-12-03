@@ -8,7 +8,7 @@ const path = require('path');
 const { db } = require("./config/database");
 
 const session = require("express-session");
-const LocalStrategy = require('./middlewares/passportLocal');
+const LocalStrategy = require('./middlewares/rev-passport');
 const passport = require('passport');
 
 app.set('view engine', 'ejs');
@@ -18,11 +18,19 @@ app.use(express.static(path.join(__dirname + '/assets')));
 app.use('/uploads', express.static(path.join(__dirname + '/uploads')))
 app.use(express.urlencoded({ extended: true }))
 
+// app.use(session({
+//     name: 'Admin',
+//     secret: 'Admin123',
+//     resave: true,
+//     saveUninitialized: false,
+//     cookie: { maxAge: 1000 * 60 * 60 }
+// }))
+
 app.use(session({
-    name: 'Admin',
-    secret: 'Admin123',
+    name: 'admin',
+    secret: 'admin@123',
     resave: true,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: { maxAge: 1000 * 60 * 60 }
 }))
 
