@@ -50,3 +50,7 @@ module.exports.logout = (req, res) => {
         return res.redirect('/login');
     });
 }
+
+module.exports.profilePage=(req,res)=>{
+    return res.render('./pages/profile');
+}

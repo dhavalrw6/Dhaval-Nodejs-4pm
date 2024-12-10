@@ -38,14 +38,14 @@ passport.userPassportAuth = (req, res, next) => {
     if (!req.isAuthenticated()) {
         return res.redirect('/user/login');
     }
-    next();
+    return next();
 }
 
 passport.setUserData = (req, res, next) => {
     if (req.isAuthenticated()) {
         res.locals.user = req.user;
     }
-    next();
+    return next();
 }
 
 

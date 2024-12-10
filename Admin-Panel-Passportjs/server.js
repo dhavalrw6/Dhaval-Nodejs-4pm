@@ -6,12 +6,16 @@ const LocalStrategy = require('./middlewares/passportLocal');
 const passport = require('passport');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const flash = require('connect-flash');
+const flashMiddleware = require('./middlewares/flashMiddleware');
+
 const port = 8081;
 
 const app = express();
 
 app.set('view engine', 'ejs');
 
+app.use(flash());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname + '/assets')));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,6 +29,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setUserData);
+app.use(flashMiddleware.flashMessage)
 
 app.use('/', require('./routers'));
 

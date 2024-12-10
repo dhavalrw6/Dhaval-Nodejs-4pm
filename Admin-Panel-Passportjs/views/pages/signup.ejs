@@ -24,6 +24,12 @@
     />
     <!-- Custom CSS -->
     <link href="/css/style.min.css" rel="stylesheet" />
+    <script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js
+"></script>
+<link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css
+" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -205,6 +211,22 @@
     <!-- ============================================================== -->
     <script>
       $(".preloader").fadeOut();
+    </script>
+    <script>
+      <% if(locals.flash.success.length > 0){ %>
+        Swal.fire({
+          title: "<%= locals.flash.success %>",
+          text: "You clicked the button!",
+          icon: "success"
+        });
+      <% } %>
+      <% if(locals.flash.error.length > 0){ %>
+        Swal.fire({
+          title: "<%= locals.flash.error %>",
+          text: "You clicked the button!",
+          icon: "error"
+        });
+      <% } %>
     </script>
   </body>
 </html>

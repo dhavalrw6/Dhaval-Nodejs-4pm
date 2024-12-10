@@ -8,7 +8,7 @@ const userRouter = Router();
 userRouter.get('/signup', userController.signupPage);
 userRouter.post('/signup', userController.signup);
 userRouter.get('/login', userController.loginPage)
-userRouter.post('/login', passport.authenticate('user', { failureRedirect: '/user/login', successRedirect: '/' }));
+userRouter.post('/login', passport.authenticate('user', { failureRedirect: '/user/login'}),userController.login);
 userRouter.get('/logout', userController.logout);
 userRouter.get('/profile', passport.userPassportAuth, userController.profilePage);
 

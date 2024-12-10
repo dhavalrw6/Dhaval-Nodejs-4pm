@@ -38,5 +38,21 @@
     <script src="/libs/flot/jquery.flot.crosshair.js"></script>
     <script src="/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
     <script src="/js/pages/chart/chart-page-init.js"></script>
+    <script>
+      <% if(locals.flash.success.length > 0){ %>
+        Swal.fire({
+          title: "<%= locals.flash.success %>",
+          text: "You clicked the button!",
+          icon: "success"
+        });
+      <% } %>
+      <% if(locals.flash.error.length > 0){ %>
+        Swal.fire({
+          title: "<%= locals.flash.error %>",
+          text: "You clicked the button!",
+          icon: "error"
+        });
+      <% } %>
+    </script>
   </body>
 </html>

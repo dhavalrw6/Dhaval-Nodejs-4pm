@@ -32,7 +32,7 @@ passport.serializeUser((Admin, done) => {
 
 passport.deserializeUser(async (id, done) => {
     let Admin = await admin.findById(id);
-    return done(null, Admin);        
+    return done(null, Admin);
 })
 
 passport.AdminPassportAuth = (req, res, next) => {
