@@ -1,8 +1,14 @@
 
+const categoryModel = require("../models/categorySchema");
 const Product = require("../models/productSchema");
+const subCategoryModel = require("../models/subCategorySchema");
 
-module.exports.addProductPage = (req, res) => {
-    return res.render('./pages/add-product');
+module.exports.addProductPage = async(req, res) => {
+    let categorys = await categoryModel.find();
+    let subCategorys = await subCategoryModel.find();
+    return res.render('./pages/add-product',{
+        categorys, subCategorys
+    });
 }
 
 module.exports.addProduct = async (req, res) => {
@@ -22,7 +28,7 @@ module.exports.addProduct = async (req, res) => {
 
 module.exports.viewProductPage = async (req, res) => {
     try {
-        let products = await Product.find();
+        let products = await Product.find().populate('categoryId');
         console.log(products);
         return res.send(products);
         // return res.render('./pages/view-products', { products });
