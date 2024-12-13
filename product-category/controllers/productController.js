@@ -3,10 +3,10 @@ const categoryModel = require("../models/categorySchema");
 const Product = require("../models/productSchema");
 const subCategoryModel = require("../models/subCategorySchema");
 
-module.exports.addProductPage = async(req, res) => {
+module.exports.addProductPage = async (req, res) => {
     let categorys = await categoryModel.find();
     let subCategorys = await subCategoryModel.find();
-    return res.render('./pages/add-product',{
+    return res.render('./pages/add-product', {
         categorys, subCategorys
     });
 }
@@ -28,18 +28,19 @@ module.exports.addProduct = async (req, res) => {
 
 module.exports.viewProductPage = async (req, res) => {
     try {
-        let products = await Product.find().populate('categoryId');
+        let products = await Product.find({}).populate('categoryId');
         console.log(products);
-        return res.send(products);
-        // return res.render('./pages/view-products', { products });
+        let findCat = null;
+        // return res.json(products);
+        return res.render('./pages/view-products', { products, findCat });
     } catch (error) {
         return res.json(error.message);
     }
 }
 
-module.exports.editProductPage = async(req,res)=>{
+module.exports.editProductPage = async (req, res) => {
     try {
-        let product = await Product.findOne({id:req.params.id});
+        let product = await Product.findOne({ id: req.params.id });
         console.log(product);
         return res.send(product);
         // return res.render('edit-product',{product});        
@@ -49,22 +50,22 @@ module.exports.editProductPage = async(req,res)=>{
     }
 }
 
-module.exports.editProduct =async(req,res)=>{
+module.exports.editProduct = async (req, res) => {
     try {
-        if(req.file){
+        if (req.file) {
             req.body.image = req.file.path;
         }
-        console.log(req.body,"\n from edit page",req.params.id);        
-        await Product.findByIdAndUpdate(req.params.id,req.body);
+        console.log(req.body, "\n from edit page", req.params.id);
+        await Product.findByIdAndUpdate(req.params.id, req.body);
         return res.json("Data update.");
         // return res.redirect(req.get('Referrer') || '/');
     } catch (error) {
         console.log(error);
-        return res.redirect( req.get('Referrer') || '/');
+        return res.redirect(req.get('Referrer') || '/');
     }
 }
 
-module.exports.deleteProduct = async(req,res)=>{
+module.exports.deleteProduct = async (req, res) => {
     try {
         await Product.findByIdAndDelete(req.params.id);
         return res.json("Product Deleted..")

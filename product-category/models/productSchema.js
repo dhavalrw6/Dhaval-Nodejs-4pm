@@ -6,9 +6,13 @@ const productSchema = new mongoose.Schema({
     price: Number,
     description: String,
     image: String,
-    categoryId : {
-        type : mongoose.Schema.Types.ObjectId,
+    categoryId: {
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'category'
+    },
+    subCategoryId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'subCategory'
     }
 }, {
     timestamps: true
